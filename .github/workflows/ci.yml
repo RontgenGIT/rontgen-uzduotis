@@ -1,0 +1,126 @@
+name: CI Tests and Code Coverage
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_wallet
+          MYSQL_USER: test
+          MYSQL_PASSWORD: test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        ini-file: development
+        ini-values: xdebug="develop,coverage"
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, pdo_mysql, mysql
+        coverage: xdebug
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: |
+        cd boilerplate
+        composer install --prefer-dist --no-progress
+
+    - name: Setup application
+      run: |
+        cd boilerplate
+        cp config/app_local.example.php config/app_local.php
+        # Configure test database
+        sed -i "s/'host' => 'localhost'/'host' => '127.0.0.1'/" config/app_local.php
+        sed -i "s/'username' => 'my_app'/'username' => 'test'/" config/app_local.php
+        sed -i "s/'password' => 'secret'/'password' => 'test'/" config/app_local.php
+        sed -i "s/'database' => 'my_app'/'database' => 'test_wallet'/" config/app_local.php
+
+    - name: Run database migrations
+      run: |
+        cd boilerplate
+        bin/cake migrations migrate
+
+    - name: Run database seeds
+      run: |
+        cd boilerplate
+        bin/cake migrations seed
+
+    - name: Run tests with coverage
+      continue-on-error: true
+      run: |
+        cd boilerplate
+        vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-html=coverage-report --testdox
+
+    - name: Check code coverage
+      if: github.event_name == 'pull_request'
+      run: |
+        cd boilerplate
+        php -r "
+        \$xml = simplexml_load_file('coverage.xml');
+        \$metrics = \$xml->project->metrics;
+        \$lineRate = (float) \$metrics['statements'];
+        \$coverage = round(\$lineRate * 100, 2);
+        echo \"Code coverage: {\$coverage}%\n\";
+        if (\$coverage < 90) {
+            echo \"❌ Code coverage {\$coverage}% is below required 90%\n\";
+            exit(1);
+        } else {
+            echo \"✅ Code coverage {\$coverage}% meets the 90% requirement\n\";
+        }"
+
+    - name: Upload coverage reports
+      if: github.event_name == 'pull_request'
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./boilerplate/coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+
+    - name: Comment PR with coverage
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const path = './boilerplate/coverage.xml';
+          
+          if (fs.existsSync(path)) {
+            const xml = fs.readFileSync(path, 'utf8');
+            const match = xml.match(/statements="([^"]+)"/);
+            if (match) {
+              const coverage = Math.round(parseFloat(match[1]) * 100 * 100) / 100;
+              const status = coverage >= 90 ? '✅' : '❌';
+              const message = `${status} **Code Coverage Report**\n\nCurrent coverage: **${coverage}%**\nRequired: **90%**\n\n${coverage >= 90 ? 'Coverage requirement met!' : 'Coverage below required threshold!'}`;
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: message
+              });
+            }
+          }

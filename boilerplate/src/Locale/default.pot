@@ -1,0 +1,385 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-07-29 15:40+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/TransactionsController.php:57
+#: Controller/TransactionsController.php:82
+msgid "The transaction has been saved."
+msgstr ""
+
+#: Controller/TransactionsController.php:61
+#: Controller/TransactionsController.php:86
+msgid "The transaction could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/TransactionsController.php:104
+msgid "The transaction has been deleted."
+msgstr ""
+
+#: Controller/TransactionsController.php:106
+msgid "The transaction could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:54
+#: Controller/UsersController.php:78
+msgid "The user has been saved."
+msgstr ""
+
+#: Controller/UsersController.php:58
+#: Controller/UsersController.php:82
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:99
+msgid "The user has been deleted."
+msgstr ""
+
+#: Controller/UsersController.php:101
+msgid "The user could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/WalletsController.php:57
+#: Controller/WalletsController.php:82
+msgid "The wallet has been saved."
+msgstr ""
+
+#: Controller/WalletsController.php:61
+#: Controller/WalletsController.php:86
+msgid "The wallet could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/WalletsController.php:104
+msgid "The wallet has been deleted."
+msgstr ""
+
+#: Controller/WalletsController.php:106
+msgid "The wallet could not be deleted. Please, try again."
+msgstr ""
+
+#: Template/Layout/error.ctp:36
+msgid "Error"
+msgstr ""
+
+#: Template/Layout/error.ctp:44
+msgid "Back"
+msgstr ""
+
+#: Template/Transactions/add.ctp:9
+#: Template/Transactions/edit.ctp:9
+#: Template/Transactions/index.ctp:9
+#: Template/Transactions/index.ctp:26
+#: Template/Transactions/view.ctp:9
+#: Template/Users/add.ctp:9
+#: Template/Users/edit.ctp:9
+#: Template/Users/index.ctp:9
+#: Template/Users/index.ctp:25
+#: Template/Users/view.ctp:9
+#: Template/Users/view.ctp:53
+#: Template/Wallets/add.ctp:9
+#: Template/Wallets/edit.ctp:9
+#: Template/Wallets/index.ctp:9
+#: Template/Wallets/index.ctp:28
+#: Template/Wallets/view.ctp:9
+#: Template/Wallets/view.ctp:60
+msgid "Actions"
+msgstr ""
+
+#: Template/Transactions/add.ctp:10
+#: Template/Transactions/edit.ctp:16
+#: Template/Transactions/view.ctp:12
+#: Template/Wallets/add.ctp:13
+#: Template/Wallets/edit.ctp:19
+#: Template/Wallets/index.ctp:13
+#: Template/Wallets/view.ctp:16
+msgid "List Transactions"
+msgstr ""
+
+#: Template/Transactions/add.ctp:11
+#: Template/Transactions/edit.ctp:17
+#: Template/Transactions/index.ctp:11
+#: Template/Transactions/view.ctp:14
+#: Template/Users/add.ctp:11
+#: Template/Users/edit.ctp:17
+#: Template/Users/index.ctp:11
+#: Template/Users/view.ctp:14
+#: Template/Wallets/add.ctp:10
+#: Template/Wallets/edit.ctp:16
+#: Template/Wallets/view.ctp:12
+msgid "List Wallets"
+msgstr ""
+
+#: Template/Transactions/add.ctp:12
+#: Template/Transactions/edit.ctp:18
+#: Template/Transactions/index.ctp:12
+#: Template/Transactions/view.ctp:15
+#: Template/Users/add.ctp:12
+#: Template/Users/edit.ctp:18
+#: Template/Users/index.ctp:12
+#: Template/Users/view.ctp:15
+#: Template/Wallets/index.ctp:10
+#: Template/Wallets/view.ctp:13
+msgid "New Wallet"
+msgstr ""
+
+#: Template/Transactions/add.ctp:18
+msgid "Add Transaction"
+msgstr ""
+
+#: Template/Transactions/add.ctp:26
+#: Template/Transactions/edit.ctp:32
+#: Template/Users/add.ctp:24
+#: Template/Users/edit.ctp:30
+#: Template/Wallets/add.ctp:27
+#: Template/Wallets/edit.ctp:33
+msgid "Submit"
+msgstr ""
+
+#: Template/Transactions/edit.ctp:11
+#: Template/Transactions/index.ctp:41
+#: Template/Users/edit.ctp:11
+#: Template/Users/index.ctp:39
+#: Template/Users/view.ctp:66
+#: Template/Wallets/edit.ctp:11
+#: Template/Wallets/index.ctp:43
+#: Template/Wallets/view.ctp:73
+msgid "Delete"
+msgstr ""
+
+#: Template/Transactions/edit.ctp:13
+#: Template/Transactions/index.ctp:41
+#: Template/Transactions/view.ctp:11
+#: Template/Users/edit.ctp:13
+#: Template/Users/index.ctp:39
+#: Template/Users/view.ctp:11
+#: Template/Users/view.ctp:66
+#: Template/Wallets/edit.ctp:13
+#: Template/Wallets/index.ctp:43
+#: Template/Wallets/view.ctp:11
+#: Template/Wallets/view.ctp:73
+msgid "Are you sure you want to delete # {0}?"
+msgstr ""
+
+#: Template/Transactions/edit.ctp:24
+#: Template/Transactions/view.ctp:10
+msgid "Edit Transaction"
+msgstr ""
+
+#: Template/Transactions/index.ctp:10
+#: Template/Transactions/view.ctp:13
+#: Template/Wallets/add.ctp:14
+#: Template/Wallets/edit.ctp:20
+#: Template/Wallets/index.ctp:14
+#: Template/Wallets/view.ctp:17
+msgid "New Transaction"
+msgstr ""
+
+#: Template/Transactions/index.ctp:16
+msgid "Transactions"
+msgstr ""
+
+#: Template/Transactions/index.ctp:39
+#: Template/Users/index.ctp:37
+#: Template/Users/view.ctp:64
+#: Template/Wallets/index.ctp:41
+#: Template/Wallets/view.ctp:71
+msgid "View"
+msgstr ""
+
+#: Template/Transactions/index.ctp:40
+#: Template/Users/index.ctp:38
+#: Template/Users/view.ctp:65
+#: Template/Wallets/index.ctp:42
+#: Template/Wallets/view.ctp:72
+msgid "Edit"
+msgstr ""
+
+#: Template/Transactions/index.ctp:49
+#: Template/Users/index.ctp:47
+#: Template/Wallets/index.ctp:51
+msgid "first"
+msgstr ""
+
+#: Template/Transactions/index.ctp:50
+#: Template/Users/index.ctp:48
+#: Template/Wallets/index.ctp:52
+msgid "previous"
+msgstr ""
+
+#: Template/Transactions/index.ctp:52
+#: Template/Users/index.ctp:50
+#: Template/Wallets/index.ctp:54
+msgid "next"
+msgstr ""
+
+#: Template/Transactions/index.ctp:53
+#: Template/Users/index.ctp:51
+#: Template/Wallets/index.ctp:55
+msgid "last"
+msgstr ""
+
+#: Template/Transactions/index.ctp:55
+#: Template/Users/index.ctp:53
+#: Template/Wallets/index.ctp:57
+msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
+msgstr ""
+
+#: Template/Transactions/view.ctp:11
+msgid "Delete Transaction"
+msgstr ""
+
+#: Template/Transactions/view.ctp:22
+msgid "Wallet"
+msgstr ""
+
+#: Template/Transactions/view.ctp:26
+#: Template/Wallets/view.ctp:56
+msgid "Type"
+msgstr ""
+
+#: Template/Transactions/view.ctp:30
+#: Template/Wallets/view.ctp:58
+msgid "Description"
+msgstr ""
+
+#: Template/Transactions/view.ctp:34
+#: Template/Users/view.ctp:30
+#: Template/Users/view.ctp:47
+#: Template/Wallets/view.ctp:33
+#: Template/Wallets/view.ctp:54
+msgid "Id"
+msgstr ""
+
+#: Template/Transactions/view.ctp:38
+#: Template/Wallets/view.ctp:57
+msgid "Amount"
+msgstr ""
+
+#: Template/Transactions/view.ctp:42
+#: Template/Users/view.ctp:34
+#: Template/Users/view.ctp:51
+#: Template/Wallets/view.ctp:41
+#: Template/Wallets/view.ctp:59
+msgid "Created"
+msgstr ""
+
+#: Template/Users/add.ctp:10
+#: Template/Users/edit.ctp:16
+#: Template/Users/view.ctp:12
+#: Template/Wallets/add.ctp:11
+#: Template/Wallets/edit.ctp:17
+#: Template/Wallets/index.ctp:11
+#: Template/Wallets/view.ctp:14
+msgid "List Users"
+msgstr ""
+
+#: Template/Users/add.ctp:18
+msgid "Add User"
+msgstr ""
+
+#: Template/Users/edit.ctp:24
+#: Template/Users/view.ctp:10
+msgid "Edit User"
+msgstr ""
+
+#: Template/Users/index.ctp:10
+#: Template/Users/view.ctp:13
+#: Template/Wallets/add.ctp:12
+#: Template/Wallets/edit.ctp:18
+#: Template/Wallets/index.ctp:12
+#: Template/Wallets/view.ctp:15
+msgid "New User"
+msgstr ""
+
+#: Template/Users/index.ctp:16
+msgid "Users"
+msgstr ""
+
+#: Template/Users/login.ctp:5
+msgid "Please enter your username and password"
+msgstr ""
+
+#: Template/Users/login.ctp:9
+msgid "Login"
+msgstr ""
+
+#: Template/Users/view.ctp:11
+msgid "Delete User"
+msgstr ""
+
+#: Template/Users/view.ctp:22
+msgid "Email"
+msgstr ""
+
+#: Template/Users/view.ctp:26
+msgid "Password"
+msgstr ""
+
+#: Template/Users/view.ctp:38
+#: Template/Users/view.ctp:52
+#: Template/Wallets/view.ctp:45
+msgid "Modified"
+msgstr ""
+
+#: Template/Users/view.ctp:43
+msgid "Related Wallets"
+msgstr ""
+
+#: Template/Users/view.ctp:48
+msgid "User Id"
+msgstr ""
+
+#: Template/Users/view.ctp:49
+#: Template/Wallets/view.ctp:37
+msgid "Balance"
+msgstr ""
+
+#: Template/Users/view.ctp:50
+#: Template/Wallets/view.ctp:29
+msgid "Currency"
+msgstr ""
+
+#: Template/Wallets/add.ctp:20
+msgid "Add Wallet"
+msgstr ""
+
+#: Template/Wallets/edit.ctp:26
+#: Template/Wallets/view.ctp:10
+msgid "Edit Wallet"
+msgstr ""
+
+#: Template/Wallets/index.ctp:18
+msgid "Wallets"
+msgstr ""
+
+#: Template/Wallets/view.ctp:11
+msgid "Delete Wallet"
+msgstr ""
+
+#: Template/Wallets/view.ctp:18
+msgid "Papildyti piniginę"
+msgstr ""
+
+#: Template/Wallets/view.ctp:25
+msgid "User"
+msgstr ""
+
+#: Template/Wallets/view.ctp:50
+msgid "Related Transactions"
+msgstr ""
+
+#: Template/Wallets/view.ctp:55
+msgid "Wallet Id"
+msgstr ""
+

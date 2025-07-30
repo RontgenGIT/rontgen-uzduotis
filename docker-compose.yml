@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rontgen-cakephp-app
+    ports:
+      - "8765:80"
+    volumes:
+      - ./boilerplate:/var/www/html
+    restart: unless-stopped
