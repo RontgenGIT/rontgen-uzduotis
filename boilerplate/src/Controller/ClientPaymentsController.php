@@ -90,7 +90,7 @@ class ClientPaymentsController extends AppController
                 'currency' => 'EUR',
                 'accepturl' => 'http://localhost:8765/client-payments/success',
                 'cancelurl' => 'http://localhost:8765/client-payments/topup',
-                'callbackurl' => 'http://localhost:8765/client-payments/callback',
+                'callbackurl' => 'http://localhost:8765/payments/callback',
                 'test' => 1,
                 'p_firstname' => 'Test',
                 'p_lastname' => 'User',
@@ -117,6 +117,8 @@ class ClientPaymentsController extends AppController
      */
     public function callback()
     {
+        $this->request->allowMethod(['post']);
+
         try {
             // Handle both GET and POST data as Paysera callbacks can come via either method
             $data = array_merge($this->request->getQuery(), $this->request->getData());
