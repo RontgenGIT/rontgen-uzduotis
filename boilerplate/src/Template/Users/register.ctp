@@ -5,6 +5,7 @@
         <legend><?= __('register.title') ?></legend>
         <?= $this->Form->control('email', ['label' => __('register.email')]) ?>
         <?= $this->Form->control('password', ['label' => __('register.password')]) ?>
+        <?= $this->Form->control('confirm_password', ['type' => 'password', 'label' => __('register.confirm_password')]) ?>
     </fieldset>
     <?= $this->Form->button(__('register.submit')) ?>
     <?= $this->Form->end() ?>

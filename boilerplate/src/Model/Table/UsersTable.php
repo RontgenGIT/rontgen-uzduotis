@@ -59,13 +59,10 @@ class UsersTable extends Table
 
         $validator
             ->email('email')
-            ->allowEmptyString('email')
+            ->notEmptyString('email', 'Please enter an email')
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
-        $validator
-            ->scalar('password')
-            ->maxLength('password', 255)
-            ->allowEmptyString('password');
+        $this->passwordValidation($validator);
 
         $validator
             ->scalar('role')
@@ -74,6 +71,35 @@ class UsersTable extends Table
             ->notEmptyString('role');
 
         return $validator;
+    }
+
+    public function validationRegister(Validator $validator)
+    {
+        $validator = $this->validationDefault($validator);
+        $this->passwordValidation($validator);
+
+        $validator
+            ->requirePresence('confirm_password', 'create')
+            ->notEmptyString('confirm_password', 'Please confirm your password')
+            ->add('confirm_password', 'matchPassword', [
+                'rule' => function ($value, $context) {
+                    return isset($context['data']['password']) && $value === $context['data']['password'];
+                },
+                'message' => 'Passwords do not match',
+            ]);
+
+        return $validator;
+    }
+
+    private function passwordValidation(Validator $validator)
+    {
+        return $validator
+            ->scalar('password')
+            ->notEmptyString('password', 'Password is required')
+            ->maxLength('password', 255, 'Password is too long')
+            ->minLength('password', 8, 'Password must be at least 8 characters long')
+            ->regex('password', '/[0-9]/', 'Password must contain at least one number')
+            ->regex('password', '/[^A-Za-z0-9]/', 'Password must contain at least one special character');
     }
 
     /**

@@ -178,19 +178,20 @@ $cakeDescription = 'Rontgen Tech';
         <div class="logo">
             <img src="https://rontgen.lt/lending/img/logo_white.png" alt="Rontgen">
         </div>
-        <div class="nav-links">
-            <?php if ($this->request->getSession()->read('Auth.User')): ?>
-                <?php $user = $this->request->getSession()->read('Auth.User'); ?>
-                <?php if (isset($user['role']) && $user['role'] === 'admin'): ?>
-                    <?= $this->Html->link('Admin Panel', ['controller' => 'Users', 'action' => 'index'], ['class' => 'nav-link']) ?>
+            <div class="nav-links">
+                <?php if ($this->request->getSession()->read('Auth.User')): ?>
+                    <?php $user = $this->request->getSession()->read('Auth.User'); ?>
+                    <?php if (isset($user['role']) && $user['role'] === 'admin'): ?>
+                        <?= $this->Html->link('Admin Panel', ['controller' => 'Users', 'action' => 'index'], ['class' => 'nav-link']) ?>
+                    <?php else: ?>
+                        <?= $this->Html->link('Dashboard', ['controller' => 'Client', 'action' => 'dashboard'], ['class' => 'nav-link']) ?>
+                    <?php endif; ?>
+                    <?= $this->Html->link('Profile', ['controller' => 'Client', 'action' => 'profile'], ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link(__('layout.logout'), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'logout-btn']) ?>
                 <?php else: ?>
-                    <?= $this->Html->link('Dashboard', ['controller' => 'Client', 'action' => 'dashboard'], ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link(__('layout.login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'nav-link']) ?>
                 <?php endif; ?>
-                <?= $this->Html->link(__('layout.logout'), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'logout-btn']) ?>
-            <?php else: ?>
-                <?= $this->Html->link(__('layout.login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'nav-link']) ?>
-            <?php endif; ?>
-        </div>
+            </div>
     </div>
 
     <div class="container">

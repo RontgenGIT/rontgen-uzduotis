@@ -215,7 +215,7 @@ class UsersController extends AppController
             $data = $this->request->getData();
             $data['role'] = 'user'; // Set default role for regular users
 
-            $user = $this->Users->patchEntity($user, $data);
+            $user = $this->Users->patchEntity($user, $data, ['validate' => 'register']);
             if ($this->Users->save($user)) {
                 // Create wallet for the new user
                 $this->loadModel('Wallets');
