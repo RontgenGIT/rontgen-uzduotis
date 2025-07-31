@@ -383,6 +383,28 @@ msgstr "Susijusios transakcijos"
 msgid "home.title"
 msgstr "Rontgen Tech Užduotis"
 
+#: Template/Client/edit.ctp:56
+msgid "New Password"
+msgstr "Naujas slaptažodis"
+
+msgid "Edit Your Profile"
+msgstr "Redaguoti profilį"
+
+msgid "Current Password"
+msgstr "Dabartinis slaptažodis"
+
+msgid "Save Changes"
+msgstr "Išsaugoti pakeitimus"
+
+msgid "Account Information"
+msgstr "Paskyros informacija"
+
+msgid "Registered:"
+msgstr "Registracijos data:"
+
+msgid "Last Updated:"
+msgstr "Paskutinį kartą atnaujinta:"
+
 msgid "home.welcome"
 msgstr "Sveiki atvykę į Rontgen Tech Kandidato Užduotį!"
 
@@ -451,6 +473,9 @@ msgstr "El. paštas"
 
 msgid "register.password"
 msgstr "Slaptažodis"
+
+msgid "register.confirm_password"
+msgstr "Patvirtinti slaptažodį"
 
 msgid "register.submit"
 msgstr "Užsiregistruoti"
