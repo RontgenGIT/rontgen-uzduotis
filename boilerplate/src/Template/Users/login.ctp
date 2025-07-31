@@ -8,7 +8,7 @@
     </fieldset>
     <?= $this->Form->button(__('login.button')); ?>
     <?= $this->Form->end() ?>
-    <?= $this->Html->link(__('login.register_link'), ['action' => 'add']) ?>
+    <?= $this->Html->link(__('login.register_link'), ['action' => 'register']) ?>
 
     <div style="margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
         <h4><?= __('login.test_credentials.title') ?></h4>

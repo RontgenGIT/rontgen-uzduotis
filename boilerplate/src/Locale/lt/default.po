@@ -452,6 +452,9 @@ msgstr "El. paštas"
 msgid "register.password"
 msgstr "Slaptažodis"
 
+msgid "register.submit"
+msgstr "Užsiregistruoti"
+
 msgid "layout.documentation"
 msgstr "Dokumentacija"
 
