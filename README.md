@@ -65,7 +65,7 @@ Jūsų laukia trys pagrindinės užduotys. Kiekvienai užduočiai, kuriai reikia
 **Ką daryti?**
 - Repozitorijoje rasite sukurtą *issue*, kuris imituoja kliento pranešimą apie klaidą.
 - Yra trys klaidos - išanalizuokite problemas ir ištaisykite bent vieną ar visas tris klaidas.
-- Sukurkite *Pull Request* su pataisymu.
+- Sukurkite *Pull Request* su pataisymu savo repozitorijos fork'e.
 - PR aprašyme **būtinai** nurodykite:
     - Kas tiksliai buvo problema?
     - Kaip ir kodėl ją išsprendėte (kokį sprendimo būdą pasirinkote ir kodėl)?
@@ -77,7 +77,7 @@ Jūsų laukia trys pagrindinės užduotys. Kiekvienai užduočiai, kuriai reikia
 
 **Ką daryti?**
 - Sukurkite paskolų valdymo sistemą: egzistuoja admin valdymo skyde paskolų sukurimas ir forma, kur naudotojai gali prašyti paskolos. Integruokite metodiką paskolos gavėjo tinkamumo patikrinimui. Patvirtinti paskolų gavėjai atsiranda sąraše su nurodytomis procentinėmis palūkanomis, kurios gaunamos nuo investuotos sumos ir pervedamos į investuotojo piniginės adresą. Investuoti pinigiai pervedami į paskolos gavėjo/projekto piniginės adresą.
-- Sukurkite atskirą *Pull Request* šiai funkcijai.
+- Sukurkite atskirą *Pull Request* šiai funkcijai savo repozitorijos fork'e.
 - PR aprašyme **būtinai** nurodykite:
     - Ką sukūrėte ir kaip veikia nauja funkcija?
     - Kodėl pasirinkote būtent tokius techninius sprendimus?
@@ -91,6 +91,10 @@ Jūsų laukia trys pagrindinės užduotys. Kiekvienai užduočiai, kuriai reikia
 - Sukurkite galimybę investuotojui nurodyti kriterijus pagal kuriuos galėtų investuoti. 
 - Siūlomi kriterijai: kredito įvertinimas ir nemokumo tikimybė, paskolos suma ir terminas, palūkanų normos lūkesčiai, rizikos tolerancijos lygis, skolininko pajamų patvirtinimas, paskolos paskirtis ir užstatas, geografinės preferencijos, diversifikacija tarp kelių paskolų. 
 - Pagalvokite ir pasiūlykite papildomus kriterijus.
+
+### Kai bus visos užduotys padarytos
+
+- Nusiųskite laišką HR, kad baigėte su nuoroda į savo repozitorija
 
 ---
 
