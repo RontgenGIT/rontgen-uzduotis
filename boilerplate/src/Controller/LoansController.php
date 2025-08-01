@@ -4,52 +4,65 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Service\TransactionLogger;
+use App\Service\LoanEligibilityService;
+use App\Service\InvestmentCriteriaService;
 
 class LoansController extends AppController
 {
+    public function view($id)
+    {
+        $loan = $this->Loans->get($id, [
+            'contain' => ['Users', 'Investments' => ['Users']]
+        ]);
+        $investments = $loan->investments;
+        $this->set(compact('loan', 'investments'));
+    }
+
     public function adminList()
     {
         if (!$this->requireAdmin()) {
             return;
         }
 
-        $this->loadModel('Loans');
-        $loans = $this->Loans->find()->order(['created' => 'DESC'])->toList();
+        $loans = $this->Loans->find()
+            ->order(['created' => 'DESC'])
+            ->toList();
+
         $this->set(compact('loans'));
     }
 
     public function adminApprove($id = null)
     {
-        $this->loadModel('Loans');
         $loan = $this->Loans->get($id);
         if ($loan->status !== 'requested') {
             $this->Flash->error('Loan is not in requested state.');
-            return $this->redirect(['action' => 'admin_list']);
+            return $this->redirect(['action' => 'adminList']);
         }
         $loan->status = 'approved';
+
         if ($this->Loans->save($loan)) {
             $this->Flash->success('Loan approved.');
         } else {
             $this->Flash->error('Approval failed.');
         }
-        return $this->redirect(['action' => 'admin_list']);
+        return $this->redirect(['action' => 'adminList']);
     }
 
     public function adminReject($id = null)
     {
-        $this->loadModel('Loans');
         $loan = $this->Loans->get($id);
         if ($loan->status !== 'requested') {
             $this->Flash->error('Loan is not in requested state.');
-            return $this->redirect(['action' => 'admin_list']);
+            return $this->redirect(['action' => 'adminList']);
         }
         $loan->status = 'rejected';
+
         if ($this->Loans->save($loan)) {
             $this->Flash->success('Loan rejected.');
         } else {
             $this->Flash->error('Rejection failed.');
         }
-        return $this->redirect(['action' => 'admin_list']);
+        return $this->redirect(['action' => 'adminList']);
     }
 
     public function adminEdit($id = null)
@@ -58,7 +71,6 @@ class LoansController extends AppController
             return;
         }
 
-        $this->loadModel('Loans');
         $loan = $this->Loans->get($id);
 
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -75,28 +87,28 @@ class LoansController extends AppController
 
     public function request()
     {
-        $this->loadModel('Loans');
         $loanRequest = $this->Loans->newEntity();
+        $userId = $this->Auth->user('id');
+        $eligibilityService = new LoanEligibilityService();
 
         if ($this->request->is('post')) {
             $data = $this->request->getData();
-            if (!$this->checkEligibility($data)) {
+
+            if (!$eligibilityService->isEligible($data)) {
                 $this->Flash->error('You are not eligible for this loan.');
                 $this->set(compact('loanRequest'));
                 return;
             }
 
             $returnDate = $data['return_date'] ?? null;
-            if (is_array($returnDate)) {
-                $returnDateStr = sprintf(
+            $returnDateStr = is_array($returnDate)
+                ? sprintf(
                     '%04d-%02d-%02d',
                     $returnDate['year'] ?? 0,
                     $returnDate['month'] ?? 0,
                     $returnDate['day'] ?? 0
-                );
-            } else {
-                $returnDateStr = $returnDate;
-            }
+                )
+                : $returnDate;
 
             if (!$returnDateStr || strtotime($returnDateStr) < strtotime('+1 day')) {
                 $this->Flash->error('Return date must be at least tomorrow.');
@@ -104,11 +116,20 @@ class LoansController extends AppController
                 return;
             }
 
+            $amount = isset($data['amount']) ? (float)$data['amount'] : 0;
+            $collateral = isset($data['collateral']) ? (int)$data['collateral'] : 0;
+            $realEstate = isset($data['real_estate']) ? (int)$data['real_estate'] : 0;
+            $income = isset($data['income']) ? (float)$data['income'] : 0;
+
+            $riskLevel = $this->Loans->calculateRiskLevel($amount, $collateral, $realEstate, $income);
+            $data['risk'] = $riskLevel;
+
             $loanRequest = $this->Loans->patchEntity($loanRequest, $data);
-            $loanRequest->user_id = $this->Auth->user('id');
+            $loanRequest->user_id = $userId;
             $loanRequest->status = 'requested';
+
             if ($this->Loans->save($loanRequest)) {
-                $this->Flash->success('Loan request submitted!');
+                $this->Flash->success('Loan request submitted! Your risk level: ' . $riskLevel);
                 return $this->redirect(['action' => 'myLoans']);
             }
             $this->Flash->error('Failed to submit request.');
@@ -118,7 +139,6 @@ class LoansController extends AppController
 
     public function myLoans()
     {
-        $this->loadModel('Loans');
         $userId = $this->Auth->user('id');
         $loans = $this->Loans->find()->where(['user_id' => $userId])->toList();
         $this->set(compact('loans'));
@@ -126,14 +146,12 @@ class LoansController extends AppController
 
     public function investList()
     {
+        $userId = $this->Auth->user('id');
+        $criteriaService = new InvestmentCriteriaService($userId);
+
+        $loans = $criteriaService->filterLoans($this->Loans);
+
         $this->loadModel('Investments');
-        $this->loadModel('Loans');
-
-        $loans = $this->Loans->find()
-            ->contain(['Users'])
-            ->order(['Loans.created' => 'DESC'])
-            ->all();
-
         foreach ($loans as $loan) {
             $loan->total_invested = $this->Investments->find()
                 ->where(['loan_id' => $loan->id])
@@ -146,7 +164,7 @@ class LoansController extends AppController
     public function invest($loanId = null)
     {
         $this->loadModel('Investments');
-        $this->loadModel('Loans');
+        $this->loadModel('Wallets');
         $loan = $this->Loans->get($loanId);
 
         $currentUserId = $this->Auth->user('id');
@@ -167,16 +185,26 @@ class LoansController extends AppController
 
         $investment = $this->Investments->newEntity();
         if ($this->request->is('post')) {
-            $investmentAmount = $this->request->getData('amount');
+            $investmentAmount = (float)$this->request->getData('amount');
+
+            $investorWallet = $this->Wallets->find()->where(['user_id' => $currentUserId])->first();
+            if (!$investorWallet || $investorWallet->balance < $investmentAmount) {
+                $this->Flash->error('Insufficient funds in your wallet. Your balance: ' . ($investorWallet ? $investorWallet->balance : 0));
+                $this->set(compact('loan', 'investment', 'amountLeft'));
+                return;
+            }
+
             if ($investmentAmount > $amountLeft) {
                 $this->Flash->error('Cannot invest more than the amount left: ' . $amountLeft);
                 $this->set(compact('loan', 'investment', 'amountLeft'));
                 return;
             }
+
             $investment = $this->Investments->patchEntity($investment, $this->request->getData());
             $investment->loan_id = $loanId;
-            $investment->user_id = $this->Auth->user('id');
+            $investment->user_id = $currentUserId;
             $investment->status = 'funded';
+
             if ($this->Investments->save($investment)) {
                 $this->transferFunds($investment, $loan);
 
@@ -196,40 +224,14 @@ class LoansController extends AppController
         $this->set(compact('loan', 'investment', 'amountLeft'));
     }
 
-    private function checkEligibility($data)
-    {
-        $income = floatval($data['income'] ?? 0);
-        $creditScore = intval($data['credit_score'] ?? 0);
-        return $income > 500 && $creditScore > 600;
-    }
-
-    private function transferFunds($investment, $loan)
-    {
-        $this->loadModel('Wallets');
-        $senderWallet = $this->Wallets->find()->where(['user_id' => $investment->user_id])->first();
-        $recipientWallet = $this->Wallets->find()->where(['user_id' => $loan->user_id])->first();
-
-        $amount = $investment->amount;
-
-        if ($senderWallet && $recipientWallet && $senderWallet->balance >= $amount) {
-            $senderWallet->balance -= $amount;
-            $recipientWallet->balance += $amount;
-            $this->Wallets->save($senderWallet);
-            $this->Wallets->save($recipientWallet);
-            TransactionLogger::record($senderWallet->id, -$amount, 'invest', $investment->id, "Invested in loan #{$loan->id}");
-            TransactionLogger::record($recipientWallet->id, $amount, 'receive', $loan->id, "Received investment for loan #{$loan->id}");
-        }
-    }
-
     public function repayInvestors($loanId)
     {
-        $this->loadModel('Loans');
         $this->loadModel('Wallets');
-        $this->loadModel('Investments');
 
         $loan = $this->Loans->get($loanId, ['contain' => ['Investments']]);
+        $currentUserId = $this->Auth->user('id');
 
-        if ($loan->user_id !== $this->Auth->user('id')) {
+        if ($loan->user_id !== $currentUserId) {
             $this->Flash->error('You are not authorized.');
             return $this->redirect(['action' => 'myLoans']);
         }
@@ -263,6 +265,7 @@ class LoansController extends AppController
             if ($investorWallet) {
                 $investorWallet->balance += $repayAmount;
                 $this->Wallets->save($investorWallet);
+                TransactionLogger::record($investorWallet->id, $repayAmount, 'repay', $loan->id, "Repayment for loan #{$loan->id}");
             }
         }
 
@@ -273,5 +276,24 @@ class LoansController extends AppController
 
         $this->Flash->success('Investors repaid successfully.');
         return $this->redirect(['action' => 'myLoans']);
+    }
+
+    private function transferFunds($investment, $loan)
+    {
+        $this->loadModel('Wallets');
+
+        $senderWallet = $this->Wallets->find()->where(['user_id' => $investment->user_id])->first();
+        $recipientWallet = $this->Wallets->find()->where(['user_id' => $loan->user_id])->first();
+
+        $amount = $investment->amount;
+
+        if ($senderWallet && $recipientWallet && $senderWallet->balance >= $amount) {
+            $senderWallet->balance -= $amount;
+            $recipientWallet->balance += $amount;
+            $this->Wallets->save($senderWallet);
+            $this->Wallets->save($recipientWallet);
+            TransactionLogger::record($senderWallet->id, -$amount, 'invest', $investment->id, "Invested in loan #{$loan->id}");
+            TransactionLogger::record($recipientWallet->id, $amount, 'receive', $loan->id, "Received investment for loan #{$loan->id}");
+        }
     }
 }

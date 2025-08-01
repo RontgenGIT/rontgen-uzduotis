@@ -265,6 +265,7 @@
             <?= $this->Html->link('Mano paskolos', ['controller' => 'Loans', 'action' => 'my_loans'], ['class' => 'action-btn']) ?>
             <?= $this->Html->link('Investuoti į paskolas', ['controller' => 'Loans', 'action' => 'invest_list'], ['class' => 'action-btn']) ?>
             <?= $this->Html->link('Mano investicijos', ['controller' => 'Investments', 'action' => 'my_investments'], ['class' => 'action-btn']) ?>
+            <?= $this->Html->link('Kriterijai', ['controller' => 'InvestmentCriteria', 'action' => 'edit'], ['class' => 'action-btn']) ?>
         </div>
 
         <!-- Flash Messages -->

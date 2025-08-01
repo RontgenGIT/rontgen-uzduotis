@@ -590,7 +590,7 @@ msgid "Total Amount"
 msgstr "Bendra suma"
 
 msgid "Amount Left"
-msgstr "Likusio suma"
+msgstr "Likusi suma"
 
 msgid "Interest Rate (%)"
 msgstr "Palūkanų norma (%)"
@@ -606,6 +606,9 @@ msgstr "Veiksmai"
 
 msgid "Requested"
 msgstr "Laukiama"
+
+msgid "Invested At"
+msgstr "Investuota"
 
 msgid "Pending"
 msgstr "Laukiama"
@@ -650,7 +653,7 @@ msgid "ID"
 msgstr "ID"
 
 msgid "Investor"
-msgstr "Investuotojas"
+msgstr "Investuotojo ID"
 
 msgid "Amount Invested"
 msgstr "Investuota suma"
@@ -723,3 +726,177 @@ msgstr "Prašome atnaujinti investicijos detales"
 
 msgid "Update Investment"
 msgstr "Atnaujinti investiciją"
+
+msgid "Collateral Available?"
+msgstr "Ar yra užstatas?"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "Country"
+msgstr "Šalis"
+
+msgid "Purpose"
+msgstr "Paskirtis"
+
+msgid "Business or Individual?"
+msgstr "Verslas ar fizinis asmuo?"
+
+msgid "Do You Own Real Estate?"
+msgstr "Ar turite nekilnojamojo turto?"
+
+msgid "Set Your Investment Criteria"
+msgstr "Nustatykite savo investavimo kriterijus"
+
+msgid "Minimum Credit Score"
+msgstr "Minimalus kredito balas"
+
+msgid "Min Loan Amount"
+msgstr "Mažiausia paskolos suma"
+
+msgid "Max Loan Amount"
+msgstr "Didžiausia paskolos suma"
+
+msgid "Any"
+msgstr "Bet kuris"
+
+msgid "Very Low"
+msgstr "Labai žema"
+
+msgid "Low"
+msgstr "Žema"
+
+msgid "Medium"
+msgstr "Vidutinė"
+
+msgid "High"
+msgstr "Aukšta"
+
+msgid "Very High"
+msgstr "Labai aukšta"
+
+msgid "Maximum Risk Tolerance"
+msgstr "Didžiausia rizikos tolerancija"
+
+msgid "Loan Purpose"
+msgstr "Paskolos paskirtis"
+
+msgid "Real Estate"
+msgstr "Nekilnojamasis turtas"
+
+msgid "Business"
+msgstr "Verslas"
+
+msgid "Equipment Purchase"
+msgstr "Įrangos pirkimas"
+
+msgid "Expading Services"
+msgstr "Paslaugų plėtra"
+
+msgid "Marketing"
+msgstr "Marketingas"
+
+msgid "Franchise"
+msgstr "Franšizė"
+
+msgid "Require Collateral"
+msgstr "Reikalauti užstato"
+
+msgid "Require Real Estate"
+msgstr "Reikalauti nekilnojamojo turto"
+
+msgid "Business or Individual"
+msgstr "Verslas ar fizinis asmuo"
+
+msgid "Yes"
+msgstr "Taip"
+
+msgid "Individual"
+msgstr "Fizinis asmuo"
+
+msgid "Lithuania"
+msgstr "Lietuva"
+
+msgid "Latvia"
+msgstr "Latvija"
+
+msgid "Estonia"
+msgstr "Estija"
+
+msgid "Poland"
+msgstr "Lenkija"
+
+msgid "Germany"
+msgstr "Vokietija"
+
+msgid "France"
+msgstr "Prancūzija"
+
+msgid "Spain"
+msgstr "Ispanija"
+
+msgid "Italy"
+msgstr "Italija"
+
+msgid "United Kingdom"
+msgstr "Jungtinė Karalystė"
+
+msgid "United States"
+msgstr "Jungtinės Valstijos"
+
+msgid "Preferred Country"
+msgstr "Pageidaujama šalis"
+
+msgid "Save Criteria"
+msgstr "Išsaugoti kriterijus"
+
+msgid "Reset All Criteria"
+msgstr "Atstatyti visus kriterijus"
+
+msgid "Are you sure you want to reset all your investment criteria?"
+msgstr "Ar tikrai norite atstatyti visus savo investavimo kriterijus?"
+
+msgid "Loan Details"
+msgstr "Paskolos informacija"
+
+msgid "Loan ID"
+msgstr "Paskolos ID"
+
+msgid "Business/Individual"
+msgstr "Verslas / Fizinio asmens statusas"
+
+msgid "Loan Purpose"
+msgstr "Paskolos paskirtis"
+
+msgid "Total Amount"
+msgstr "Bendra suma"
+
+msgid "Interest Rate (%)"
+msgstr "Palūkanų norma (%)"
+
+msgid "Credit Score"
+msgstr "Kredito reitingas"
+
+msgid "Income"
+msgstr "Pajamos"
+
+msgid "Collateral Required?"
+msgstr "Reikalingas užstatas?"
+
+msgid "Real Estate Required?"
+msgstr "Reikalingas nekilnojamasis turtas?"
+
+msgid "Risk Level"
+msgstr "Rizikos lygis"
+
+msgid "Loan Repayment Date"
+msgstr "Paskolos grąžinimo data"
+
+msgid "Created"
+msgstr "Sukurta"
+
+msgid "Investments"
+msgstr "Investicijos"
+
+msgid "No investments yet for this loan."
+msgstr "Dar nėra investicijų į šią paskolą."

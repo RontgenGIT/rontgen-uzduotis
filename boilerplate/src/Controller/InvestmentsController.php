@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 class InvestmentsController extends AppController
 {
@@ -23,10 +24,15 @@ class InvestmentsController extends AppController
     public function view($id = null)
     {
         $this->loadModel('Investments');
-        $investment = $this->Investments->get($id, [
-            'contain' => ['Loans', 'Users']
-        ]);
-        $this->set(compact('investment'));
+        try {
+            $investment = $this->Investments->get($id, [
+                'contain' => ['Loans', 'Users']
+            ]);
+            $this->set(compact('investment'));
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->error(__('Investment not found.'));
+            return $this->redirect(['action' => 'myInvestments']);
+        }
     }
 
     public function myInvestments()

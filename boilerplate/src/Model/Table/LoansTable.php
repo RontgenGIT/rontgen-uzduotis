@@ -68,12 +68,6 @@ class LoansTable extends Table
             ->notEmptyString('interest_rate');
 
         $validator
-            ->numeric('loan_limit')
-            ->greaterThanOrEqual('loan_limit', 0)
-            ->lessThanOrEqual('loan_limit', 1000000, 'Loan limit too large')
-            ->allowEmptyString('loan_limit');
-
-        $validator
             ->scalar('status')
             ->maxLength('status', 30)
             ->requirePresence('status', 'create')
@@ -92,9 +86,48 @@ class LoansTable extends Table
             ->allowEmptyString('credit_score');
 
         $validator
+            ->boolean('collateral')
+            ->allowEmptyString('collateral');
+
+        $validator
+            ->scalar('country')
+            ->maxLength('country', 100)
+            ->allowEmptyString('country');
+
+        $validator
+            ->integer('risk')
+            ->allowEmptyString('risk');
+
+        $validator
+            ->boolean('real_estate')
+            ->allowEmptyString('real_estate');
+
+        $validator
+            ->scalar('purpose')
+            ->maxLength('purpose', 100)
+            ->allowEmptyString('purpose');
+
+        $validator
+            ->scalar('business_or_individual')
+            ->maxLength('business_or_individual', 30)
+            ->allowEmptyString('business_or_individual');
+
+        $validator
             ->dateTime('created')
             ->allowEmptyDateTime('created');
 
         return $validator;
+    }
+
+    public function calculateRiskLevel($amount, $collateral, $realEstate, $income)
+    {
+        $score = 1;
+        if ($amount >= 100000) $score += 2;
+        elseif ($amount >= 50000) $score += 1;
+        if (!$collateral) $score += 1;
+        if (!$realEstate) $score += 1;
+        if ($income < 2000) $score += 2;
+        elseif ($income < 5000) $score += 1;
+        return min(5, max(1, $score));
     }
 }
