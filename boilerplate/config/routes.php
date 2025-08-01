@@ -91,6 +91,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/payments/build-request/:id', ['controller' => 'Payments', 'action' => 'buildRequest'])
         ->setPass(['id']);
 
+    $routes->connect('/investments/admin-edit/:id', ['controller' => 'Investments', 'action' => 'adminEdit'], ['pass' => ['id'], 'id' => '\d+']);
+
+    $routes->connect('/loans/repay-investors/:id', ['controller' => 'Loans', 'action' => 'repayInvestors'], ['pass' => ['id']]);
+
     $routes->connect('/payments/callback', ['controller' => 'Payments', 'action' => 'callback']);
 
     $routes->fallbacks(DashedRoute::class);

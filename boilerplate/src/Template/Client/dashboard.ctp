@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="lt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -245,6 +246,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <div class="logo">
@@ -257,6 +259,14 @@
     </div>
 
     <div class="container">
+        <!-- Navigation -->
+        <div class="actions" style="margin-bottom:2rem; justify-content: center; flex-wrap:wrap;">
+            <?= $this->Html->link('Prašyti paskolos', ['controller' => 'Loans', 'action' => 'request'], ['class' => 'action-btn']) ?>
+            <?= $this->Html->link('Mano paskolos', ['controller' => 'Loans', 'action' => 'my_loans'], ['class' => 'action-btn']) ?>
+            <?= $this->Html->link('Investuoti į paskolas', ['controller' => 'Loans', 'action' => 'invest_list'], ['class' => 'action-btn']) ?>
+            <?= $this->Html->link('Mano investicijos', ['controller' => 'Investments', 'action' => 'my_investments'], ['class' => 'action-btn']) ?>
+        </div>
+
         <!-- Flash Messages -->
         <?= $this->Flash->render() ?>
 
@@ -316,4 +326,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -93,8 +93,6 @@ msgstr ""
 #: Template/Wallets/index.ctp:28
 #: Template/Wallets/view.ctp:9
 #: Template/Wallets/view.ctp:60
-msgid "Actions"
-msgstr ""
 
 #: Template/Transactions/add.ctp:10
 #: Template/Transactions/edit.ctp:16
@@ -155,7 +153,7 @@ msgstr ""
 #: Template/Wallets/index.ctp:43
 #: Template/Wallets/view.ctp:73
 msgid "Delete"
-msgstr ""
+msgstr "Trinti"
 
 #: Template/Transactions/edit.ctp:13
 #: Template/Transactions/index.ctp:41
@@ -194,8 +192,6 @@ msgstr ""
 #: Template/Users/view.ctp:64
 #: Template/Wallets/index.ctp:41
 #: Template/Wallets/view.ctp:71
-msgid "View"
-msgstr ""
 
 #: Template/Transactions/index.ctp:40
 #: Template/Users/index.ctp:38
@@ -203,7 +199,7 @@ msgstr ""
 #: Template/Wallets/index.ctp:42
 #: Template/Wallets/view.ctp:72
 msgid "Edit"
-msgstr ""
+msgstr "Redaguoti"
 
 #: Template/Transactions/index.ctp:49
 #: Template/Users/index.ctp:47
@@ -530,4 +526,200 @@ msgstr "Atšaukti"
 msgid "topup.form.pay_button"
 msgstr "Mokėti €{amount} su Paysera"
 
+msgid "Request Loan"
+msgstr "Paskolos prašymas"
 
+msgid "Project Name"
+msgstr "Projekto pavadinimas"
+
+msgid "Monthly Income"
+msgstr "Mėnesio pajamos (EUR)"
+
+msgid "Credit Score"
+msgstr "Kredito reitingas"
+
+msgid "Interest Rate"
+msgstr "Palūkanų norma"
+
+msgid "Return Date"
+msgstr "Paskolos grąžinimo data"
+
+msgid "Submit Request"
+msgstr "Pateikti prašymą"
+
+msgid "Borrowing Amount"
+msgstr "Skolinimosi suma"
+
+msgid "Amount"
+msgstr "Suma"
+
+msgid "Status"
+msgstr "Būsena"
+
+msgid "Interest %"
+msgstr "Palūkanos %"
+
+msgid "requested"
+msgstr "prašoma"
+
+msgid "Repay Investors Now"
+msgstr "Grąžinti dabar"
+
+msgid "finished"
+msgstr "baigta"
+
+msgid "Already Repaid"
+msgstr "Jau grąžinta"
+
+msgid "My Loans"
+msgstr "Mano paskolos"
+
+msgid "Project"
+msgstr "Projekto pavadinimas"
+
+msgid "Investment Opportunities & Status"
+msgstr "Investicijų galimybės ir būklė"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Borrower"
+msgstr "Skolininkas"
+
+msgid "Total Amount"
+msgstr "Bendra suma"
+
+msgid "Amount Left"
+msgstr "Likusio suma"
+
+msgid "Interest Rate (%)"
+msgstr "Palūkanų norma (%)"
+
+msgid "Return Date"
+msgstr "Grąžinimo data"
+
+msgid "Repayment Status"
+msgstr "Grąžinimo būklė"
+
+msgid "Actions"
+msgstr "Veiksmai"
+
+msgid "Requested"
+msgstr "Laukiama"
+
+msgid "Pending"
+msgstr "Laukiama"
+
+msgid "Rejected"
+msgstr "Atmesta"
+
+msgid "Finished"
+msgstr "Baigta"
+
+msgid "Paid Back"
+msgstr "Grąžinta"
+
+msgid "My Investments"
+msgstr "Mano investicijos"
+
+msgid "Loan"
+msgstr "Paskola"
+
+msgid "Action"
+msgstr "Veiksmas"
+
+msgid "funded"
+msgstr "finansuota"
+
+msgid "View"
+msgstr "Peržiūrėti"
+
+msgid "Invest"
+msgstr "Investuoti"
+
+msgid "Open"
+msgstr "Atidaryta"
+
+msgid "Edit Loan"
+msgstr "Redaguoti paskolą"
+
+msgid "Investment Details"
+msgstr "Investicijų detalės"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Investor"
+msgstr "Investuotojas"
+
+msgid "Amount Invested"
+msgstr "Investuota suma"
+
+msgid "Status"
+msgstr "Būsena"
+
+msgid "Created"
+msgstr "Sukurtas"
+
+msgid "Loan Information"
+msgstr "Paskolos informacija"
+
+msgid "Project Name"
+msgstr "Projekto pavadinimas"
+
+msgid "Total Loan Amount"
+msgstr "Bendra paskolos suma"
+
+msgid "Interest Rate (%)"
+msgstr "Palūkanų norma (%)"
+
+msgid "Loan Status"
+msgstr "Paskolos būsena"
+
+msgid "Funded"
+msgstr "Finansuota"
+
+msgid "approved"
+msgstr "patvirtinta"
+
+msgid "Approved"
+msgstr "Patvirtinta"
+
+msgid "Approve"
+msgstr "Patvirtinti"
+
+msgid "Invest in Loan: {0}"
+msgstr "Investuoti į paskolą: {0}"
+
+msgid "Total Amount:"
+msgstr "Bendra suma:"
+
+msgid "Amount Left to Invest:"
+msgstr "Likusi suma investuoti:"
+
+msgid "Interest Rate:"
+msgstr "Palūkanų norma:"
+
+msgid "Invest Amount"
+msgstr "Investuoti sumą"
+
+msgid "Invest Now"
+msgstr "Investuoti dabar"
+
+msgid "All Investments"
+msgstr "Visos investicijos"
+
+msgid "Loan Project"
+msgstr "Paskolos projektas"
+
+msgid "Invested On"
+msgstr "Investuota"
+
+msgid "Edit Investment"
+msgstr "Redaguoti investiciją"
+
+msgid "Please update the investment details"
+msgstr "Prašome atnaujinti investicijos detales"
+
+msgid "Update Investment"
+msgstr "Atnaujinti investiciją"

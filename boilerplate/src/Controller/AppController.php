@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -12,6 +13,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -68,11 +70,30 @@ class AppController extends Controller
                 'home'
             ]
         ]);
+    }
 
-        /*
-         * Enable the following component for recommended CakePHP security settings.
-         * see https://book.cakephp.org/3/en/controllers/components/security.html
-         */
-        //$this->loadComponent('Security');
+    /**
+     * Check if current user is admin
+     *
+     * @return bool
+     */
+    protected function isAdmin()
+    {
+        $user = $this->Auth->user();
+        return $user && isset($user['role']) && $user['role'] === 'admin';
+    }
+
+    /**
+     * Require admin access for action
+     *
+     * @return \Cake\Http\Response|true
+     */
+    protected function requireAdmin()
+    {
+        if (!$this->isAdmin()) {
+            $this->Flash->error(__('Access denied. Admin privileges required.'));
+            return $this->redirect(['controller' => 'Client', 'action' => 'dashboard']);
+        }
+        return true;
     }
 }

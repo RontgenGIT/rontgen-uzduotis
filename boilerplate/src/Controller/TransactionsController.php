@@ -13,29 +13,6 @@ use App\Controller\AppController;
 class TransactionsController extends AppController
 {
     /**
-     * Check if current user is admin
-     *
-     * @return bool
-     */
-    private function isAdmin()
-    {
-        $user = $this->Auth->user();
-        return $user && isset($user['role']) && $user['role'] === 'admin';
-    }
-
-    /**
-     * Require admin access for action
-     */
-    private function requireAdmin()
-    {
-        if (!$this->isAdmin()) {
-            $this->Flash->error(__('Access denied. Admin privileges required.'));
-            return $this->redirect(['controller' => 'Client', 'action' => 'dashboard']);
-        }
-        return true;
-    }
-
-    /**
      * Index method
      *
      * @return \Cake\Http\Response|null
