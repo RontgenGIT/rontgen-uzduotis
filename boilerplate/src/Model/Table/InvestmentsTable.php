@@ -37,6 +37,8 @@ class InvestmentsTable extends Table
             ->notEmptyString('loan_id')
 
             ->numeric('amount')
+            ->greaterThan('amount', 0, 'Investment amount must be positive')
+            ->lessThanOrEqual('amount', 100000, 'Investment amount exceeds maximum allowed (100,000)')
             ->requirePresence('amount', 'create')
             ->notEmptyString('amount')
 

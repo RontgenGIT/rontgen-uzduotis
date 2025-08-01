@@ -36,42 +36,62 @@ class LoansTable extends Table
     {
         $validator
             ->integer('id')
-            ->allowEmptyString('id', null, 'create')
+            ->allowEmptyString('id', null, 'create');
 
+        $validator
             ->integer('user_id')
             ->requirePresence('user_id', 'create')
-            ->notEmptyString('user_id')
+            ->notEmptyString('user_id');
 
+        $validator
             ->scalar('project_name')
             ->maxLength('project_name', 255)
             ->requirePresence('project_name', 'create')
-            ->notEmptyString('project_name')
+            ->notEmptyString('project_name');
 
+        $validator
             ->scalar('description')
-            ->allowEmptyString('description')
+            ->allowEmptyString('description');
 
+        $validator
             ->numeric('amount')
+            ->greaterThan('amount', 0, 'Amount must be positive')
+            ->lessThanOrEqual('amount', 100000, 'Amount exceeds limit')
             ->requirePresence('amount', 'create')
-            ->notEmptyString('amount')
+            ->notEmptyString('amount');
 
+        $validator
             ->numeric('interest_rate')
+            ->greaterThanOrEqual('interest_rate', 0, 'Interest must be positive')
+            ->lessThanOrEqual('interest_rate', 100, 'Interest rate too high')
             ->requirePresence('interest_rate', 'create')
-            ->notEmptyString('interest_rate')
+            ->notEmptyString('interest_rate');
 
+        $validator
             ->numeric('loan_limit')
-            ->allowEmptyString('loan_limit')
+            ->greaterThanOrEqual('loan_limit', 0)
+            ->lessThanOrEqual('loan_limit', 1000000, 'Loan limit too large')
+            ->allowEmptyString('loan_limit');
 
+        $validator
             ->scalar('status')
             ->maxLength('status', 30)
             ->requirePresence('status', 'create')
-            ->notEmptyString('status')
+            ->notEmptyString('status');
 
+        $validator
             ->numeric('income')
-            ->allowEmptyString('income')
+            ->greaterThanOrEqual('income', 0)
+            ->lessThanOrEqual('income', 1000000, 'Income too large')
+            ->allowEmptyString('income');
 
+        $validator
             ->integer('credit_score')
-            ->allowEmptyString('credit_score')
+            ->greaterThanOrEqual('credit_score', 300, 'Minimum credit score is 300')
+            ->lessThanOrEqual('credit_score', 850, 'Maximum credit score is 850')
+            ->allowEmptyString('credit_score');
 
+        $validator
             ->dateTime('created')
             ->allowEmptyDateTime('created');
 
