@@ -6,6 +6,12 @@ echo "🚀 Paleidžiama CakePHP aplikacija su automatinėmis migracijomis ir duo
 # Change to the application directory
 cd /var/www/html
 
+if [ -z "$@" ]; then
+  exec "$@"
+fi
+
+composer install -n --optimize-autoloader
+
 # Ensure the tmp directory exists and has proper permissions
 mkdir -p tmp/cache/models tmp/cache/persistent tmp/cache/views tmp/sessions logs
 chown -R www-data:www-data tmp logs
