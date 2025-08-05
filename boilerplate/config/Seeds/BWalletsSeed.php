@@ -2,7 +2,7 @@
 use Migrations\AbstractSeed;
 use Cake\ORM\TableRegistry;
 
-class WalletsSeed extends AbstractSeed
+class BWalletsSeed extends AbstractSeed
 {
     public function run()
     {

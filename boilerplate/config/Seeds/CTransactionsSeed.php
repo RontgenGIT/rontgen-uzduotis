@@ -6,7 +6,7 @@ use Cake\ORM\TableRegistry;
 /**
  * Transactions seed.
  */
-class TransactionsSeed extends AbstractSeed
+class CTransactionsSeed extends AbstractSeed
 {
     /**
      * Run Method.

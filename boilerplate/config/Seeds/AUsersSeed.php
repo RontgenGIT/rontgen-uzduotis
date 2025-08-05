@@ -6,7 +6,7 @@ use Cake\ORM\TableRegistry;
 /**
  * Users seed.
  */
-class UsersSeed extends AbstractSeed
+class AUsersSeed extends AbstractSeed
 {
     /**
      * Run Method.
